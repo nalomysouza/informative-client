@@ -42,3 +42,15 @@ function sendInformative() {
 function showInformative(body) {
     $("#informative-content").append("<tr><td>" + body + "</td></tr>");
 }
+
+$(function () {
+    $("form").on('submit', function (e) {
+        e.preventDefault();
+    });
+    $( "#connect" ).click(function() { connect(); });
+    $( "#connect1" ).ready(function() { connect(); });
+
+    $( "#disconnect" ).click(function() { disconnect(); });
+    $( "#sendInformative" ).click(function() { sendInformative(); });
+});
+

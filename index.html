@@ -4,10 +4,10 @@
 	<title>Informative WebSocket</title>
 	<meta charset="UTF-8">
 
-	<link rel="stylesheet" href="./assets/css/main.css"/>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="./assets/css/main.css" rel="stylesheet" />
+	<link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
-<body id="connect1" onload="">
+<body>
 	<noscript>
 		<h2 style="color: #ff0000">Seems your browser doesn't support
 			Javascript! Websocket relies on Javascript being enabled. Please
@@ -31,21 +31,9 @@
 	</div>
 
 	<script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');</script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>	
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<script type="text/javascript" src="./assets/js/socket.js"></script>
-	<script>
-		$(function () {
-		$("form").on('submit', function (e) {
-			e.preventDefault();
-		});
-		$( "#connect" ).click(function() { connect(); });
-		$( "#connect1" ).ready(function() { connect(); });
-
-		$( "#disconnect" ).click(function() { disconnect(); });
-		$( "#sendInformative" ).click(function() { sendInformative(); });
-		});
-	</script>
-</body>
+	<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>	
+	<script src="./node_modules/sockjs-client/dist/sockjs.min.js" type="text/javascript"></script>
+	<script src="./node_modules/@stomp/stompjs/lib/stomp.js" type="text/javascript"></script>
+	<script src="./assets/js/socket.js" type="text/javascript"></script>
+	</body>
 </html>
