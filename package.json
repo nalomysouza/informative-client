@@ -1,0 +1,15 @@
+{
+    "name": "informative-client",
+    "author": "Nalomy de Souza A. Oliveira",
+    "version": "0.0.1",
+    "keywords": ["websockets", "websocket", "client-socketJS", "informative"],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/sockjs/sockjs-client-node.git"
+    },
+    "main": "index",
+    "description": "Client Informative SockJS",
+    "dependencies": {
+    },
+    "license": "MIT"
+}
