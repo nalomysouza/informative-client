@@ -1,15 +1,29 @@
 {
-    "name": "informative-client",
+    "name": "informative-ws-client",
+    "productName": "informative-client",
     "author": "Nalomy de Souza A. Oliveira",
     "version": "0.0.1",
-    "keywords": ["websockets", "websocket", "client-socketJS", "informative"],
+    "keywords": [
+        "websockets",
+        "websocket",
+        "client-socketJS",
+        "informative"
+    ],
+    "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git://github.com/sockjs/sockjs-client-node.git"
+        "url": "https://github.com/nalomysouza/informative-ws-client.git"
     },
-    "main": "index",
     "description": "Client Informative SockJS",
-    "dependencies": {
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "package": "electron-packager ./ --platform=darwin --arch=x64 --out=out --icon=./icon.icns --overwrite"
     },
-    "license": "MIT"
+    "dependencies": {
+        "electron-debug": "^1.5.0",
+        "electron-packager": "^7.3.0",
+        "electron-prebuilt": "^1.2.7",
+        "jquery": "^3.3.1"
+    }
 }
