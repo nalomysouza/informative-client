@@ -1,0 +1,12 @@
+[
+    {
+        "informative": {
+            "id":"1",
+            "subject":"Sample Subject",
+            "content":"<h1>Content Example 1</h1><p>A paragraph</p> <p>Nalomy Corp Electron.</p>",
+            "author":"nalomy.souza@secult.ce.gov.br",
+            "createIn":"2018-02-08",
+            "expiresIn":"2018-02-21"
+        }
+    }
+]
