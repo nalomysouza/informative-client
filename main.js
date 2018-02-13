@@ -1,32 +1,56 @@
-const {app, BrowserWindow, ipcMain, Tray} = require('electron');
-require('electron-debug')({showDevTools: true});
+const {app, BrowserWindow, ipcMain, ipcRenderer, Tray} = require('electron');
 const path = require('path');
 const assetsDirectory = path.join(__dirname, 'assets');
-const nodeDirectory = path.join(__dirname, 'node_modules');
+
 let tray = undefined;
+
+/* referência global para manter a instância da janela até que sejam fechadas pelo usuário então 
+ele irá ser fechado quando o JavaScript fizer Garbage collection */
 let window = undefined;
+
+/* 
+var first_instance_on_reload = function () {
+	if (window) {
+		window.show();
+	}
+}
+if (app.makeSingleInstance(first_instance_on_reload)) {
+	app.quit();
+}
+*/
 
 app.on('ready', () => {
     createTray();
     createWindow();
 });
 
+/** Sair da aplicação quando todas as janelas forem fechadas */
 app.on('window-all-closed', () => {
     disconnect();
     app.quit();
 })
 
+app.on('activate', function () {
+	if (window === null) {
+		createWindow();
+	}
+});
+
+/** creando o tray */
 const createTray = () => {
     tray = new Tray(path.join(assetsDirectory, 'icon.png'))
-    tray.on('right-click', toggleWindow)
-    tray.on('double-click', toggleWindow)
-    tray.on('click', function (event) {
-      toggleWindow();
-  
-      // Show devtools when command clicked
-      if (window.isVisible() && process.defaultApp && event.metaKey) {
-        window.openDevTools({mode: 'detach'})
-      }
+    tray.setToolTip('Informativo');
+
+    tray.on('right-click', (event) => {
+        window.isVisible() ? window.hide() : window.show();
+    });
+
+    tray.on('double-click', (event) => {
+        window.isVisible() ? window.hide() : window.show();
+    });
+
+    tray.on('click', (event) => {
+        window.isVisible() ? window.hide() : window.show();
     });
 }
 
@@ -41,30 +65,62 @@ const getWindowPosition = () => {
 }
 
 const createWindow = () => {
+    // Cria a janela do browser.
     window = new BrowserWindow({
-    //   width: 300,
-    //   height: 450,
-        show: false,
-        frame: false,
+        width: 800,
+        height: 620,
+        'min-width': 800, 
+        'min-height': 620,
+        title: "Informativo", 
+        icon:'./icon.png',
+        // show: false,
+        skipTaskbar:true,
+        // frame: false,
     //   fullscreenable: false,
         resizable: false,
         transparent: true,
         webPreferences: {
-        // Prevents renderer process code from not running when window is
-        // hidden
-        backgroundThrottling: false
+            // Prevents renderer process code from not running when window is hidden
+            backgroundThrottling: false
         }
     });
-    window.loadURL(`file://${path.join(__dirname, 'index.html')}`)
+    window.loadURL(`file://${path.join(__dirname, 'index.html')}`);
 
-    // Hide the window when it loses focus
+    /**Ação ao apertar o botão minimizar */
+    window.on('minimize', function(event) {
+		event.preventDefault();
+		window.hide();
+    });
+
+    /**Ação ao apertar o botão fechar */
+    window.on('close', function(event) {
+		// if (!app.isQuiting) {
+		// 	event.preventDefault();
+		// 	window.hide();
+        // }
+        app.quit();
+    });
+
+    /** Minimizar o aplicativo quando sair do foco da tela **/
     // window.on('blur', () => {
     //   if (!window.webContents.isDevToolsOpened()) {
     //     window.hide();
     //   }
     // });
+
+    /** abre o DevTools. (console, inspecionar elemento, etc)**/
+    window.webContents.openDevTools();
+
+    
 }
 
+// win.once('ready-to-show', () => {
+    
+// });
+
+/**
+ * Se o app estive "aberto", será minimizado. Caso contrário será "aberto"
+ */
 const toggleWindow = () => {
     if (window.isVisible()) {
       window.hide();
