@@ -139,3 +139,8 @@ const showWindow = () => {
 ipcMain.on('show-window', () => {
     showWindow();
 });
+/** Enviando mensagem para a página web */
+ipcMain.on('asynchronous-message', (event, arg) => {
+    console.log(arg)  // prints "ping"
+    event.sender.send('asynchronous-reply', 'informativo-iniciado')
+  })
