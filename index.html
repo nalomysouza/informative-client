@@ -13,6 +13,7 @@
 	<script src="./node_modules/@stomp/stompjs/lib/stomp.js" type="text/javascript"></script>
 	<script src="./assets/js/socket.js" type="text/javascript"></script> -->
 	<script src="./assets/js/notify.js" type="text/javascript"></script>
+	<script src="./assets/js/informative.js" type="text/javascript"></script>
 </head>
 <body>
 	<noscript>
@@ -38,22 +39,17 @@
 
 	<script>
 		const {ipcRenderer} = require('electron');
-		$.getJSON("./assets/js/data.json").done(onInformative).fail(onError);
-
-		function onInformative(data) {
-			// ipcRenderer.sendSync('synchronous-message', data)
-			ipcRenderer.send('asynchronous-message', data);
-			$("#informative-content").append("<tr><td>" + data[0].informative.author + "</td></tr>");
-			console.log(data[0].informative.author);
-		};
-
-		function onError(error){
-			console.log("Erro: " + error);
-		};
-		/** Recebendo mensagem do Processo Principal*/
+		/** 
+		 * Enviando mensagem para o Processo Principal
+		 * 
+		 * */
+		ipcRenderer.send('asynchronous-message', 'start');
+		/** 
+		 * Recebendo mensagem do Processo Principal
+		 * 
+		 * */
 		ipcRenderer.on('asynchronous-reply', (event, arg) => {
-			createNotification('Informativo', 'Bem-vind@ a nova plataforma de informações em tempo real, aproveite!');
-			console.log(arg) // prints "pong"
+			createNotification('Informativo','Bem-vind@ a nova plataforma de informações em tempo real, aproveite!');
 		});
 	</script>
 	</body>

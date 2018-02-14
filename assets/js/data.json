@@ -1,12 +1,20 @@
-[
-    {
-        "informative": {
-            "id":"1",
-            "subject":"Sample Subject",
-            "content":"<h1>Content Example 1</h1><p>A paragraph</p> <p>Nalomy Corp Electron.</p>",
+{
+    "informative" : [
+        {
+            "id": 1,
+            "subject":"Sample Subject 01",
+            "content":"<h1>Content Example 01</h1><p>A paragraph</p> <p>Nalomy Corp Electron.</p>",
             "author":"nalomy.souza@secult.ce.gov.br",
             "createIn":"2018-02-08",
             "expiresIn":"2018-02-21"
+        },
+        {   
+            "id": 2,
+            "subject":"Sample Subject 02",
+            "content":"<h1>Content Example 02</h1><p>A paragraph</p> <p>Nalomy Corp Electron.</p>",
+            "author":"nalomy.souza@secult.ce.gov.br",
+            "createIn":"2018-02-14",
+            "expiresIn":"2018-02-21"
         }
-    }
-]
+    ]
+}

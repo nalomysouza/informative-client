@@ -73,7 +73,7 @@ const createWindow = () => {
         'min-height': 620,
         title: "Informativo", 
         icon:'./icon.png',
-        // show: false,
+        show: false,
         skipTaskbar:true,
         // frame: false,
     //   fullscreenable: false,
@@ -114,8 +114,7 @@ const createWindow = () => {
     
 }
 
-// win.once('ready-to-show', () => {
-    
+// window.once('ready-to-show', () => {
 // });
 
 /**
@@ -141,6 +140,5 @@ ipcMain.on('show-window', () => {
 });
 /** Enviando mensagem para a página web */
 ipcMain.on('asynchronous-message', (event, arg) => {
-    console.log(arg)  // prints "ping"
-    event.sender.send('asynchronous-reply', 'informativo-iniciado')
-  })
+    event.sender.send('asynchronous-reply', 'start');
+});
