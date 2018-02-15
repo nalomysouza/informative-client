@@ -67,8 +67,8 @@ const getWindowPosition = () => {
 const createWindow = () => {
     // Cria a janela do browser.
     window = new BrowserWindow({
-        width: 800,
-        height: 620,
+        width: 1024,
+        height: 760,
         'min-width': 800, 
         'min-height': 620,
         title: "Informativo", 
